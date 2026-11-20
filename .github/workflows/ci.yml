@@ -50,5 +50,7 @@ jobs:
           python-version: "3.11"
       - name: Install dev tools
         run: pip install -r requirements-dev.txt
+      # PYSEC-2021-421 (babel 2.9.0, path traversal in locale loading) was resolved by
+      # removing babel: nothing in refunds/ or tests/ imports it, so we don't upgrade or ignore.
       - name: pip-audit
         run: pip-audit -r requirements.txt
